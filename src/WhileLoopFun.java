@@ -13,11 +13,11 @@ public class WhileLoopFun {
      */
     public void printDigits(int number)
     {
-        while(number != 0)
+        while(number > 0)
         {
-            number = number % 10;
+            int digits = number % 10;
             number = number / 10;
-            System.out.println(number);
+            System.out.println(digits);
         }
     }
 
@@ -31,7 +31,18 @@ public class WhileLoopFun {
      */
     public int countLetter(String word, String letter)
     {
-        return word.indexOf(letter);
+        int count = 0;
+        int idx = 0;
+        while(idx < word.length())
+        {
+            String next = word.substring(idx, idx + 1);
+            if(next.equals(letter))
+            {
+                count ++;
+            }
+            idx ++;
+        }
+        return count;
     }
 
     /**Returns the maximum number of times that number can be doubled before it exceeds threshold
@@ -57,13 +68,15 @@ public class WhileLoopFun {
      */
     public int maxDoubles(int number, int threshold)
     {
-        int num = 0;
-        while(number <= threshold)
+        int count = 0;
+        int num = number * 2;
+
+        while(num <= threshold)
         {
-            Math.pow(number, 2);
-            num ++;
+            count ++;
+            num *= 2;
         }
-        return num;
+        return count;
     }
 
 /**Returns true if number is prime (i.e. it has exactly two divisors: 1 and itself) and false
@@ -78,24 +91,24 @@ public class WhileLoopFun {
  * 1 is considered non-prime because prime numbers have exactly two divisors - the number and itself -
  but 1 has only a single divisor! (don’t believe it? Google it!)
  */
-public boolean isPrime(int number) {
-    int num = 1;
-    int ans;
+public boolean isPrime(int number)
+{
+    int num = 2;
     int count = 0;
-    while(num <= number)
-    {
-        ans = number / num;
-        num ++;
-        count ++;
 
-    }
-    if (count >= 2)
+    if(num == 1)
     {
-        return true;
-    } else
-    {
-        return false;
+     return false;
     }
 
+    while(num < number)
+    {
+     if(number % num == 0)
+     {
+         return false;
+     }
+     num ++;
+    }
+    return true;
 }
 }
